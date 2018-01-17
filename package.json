@@ -6,6 +6,7 @@
     "scripts": {
         "test": "jest"
     },
+    "repository": "iamakulov/moment-locales-webpack-plugin",
     "author": "Ivan Akulov <mail@iamakulov.com> (iamakulov.com)",
     "license": "MIT",
     "peerDependencies": {
