@@ -6,9 +6,9 @@
 
 ## Why
 
-75% (160 minified kB)¹ of [Moment.js’](https://github.com/moment/moment) size are files used for localization. [They are always included](https://iamakulov.com/notes/webpack-front-end-size-caching/#moment-js) when you build your app with webpack.
+75% (160 minified KBs)¹ of [Moment.js’](https://github.com/moment/moment) size are files used for localization. [They are always included](https://iamakulov.com/notes/webpack-front-end-size-caching/#moment-js) when you build your app with webpack.
 
-You don’t need all of these files if your app is only available in a few languages. Use this plugin to strip these hungreds of kBs!
+You don’t need most of these files if your app is only available in a few languages. Use this plugin to strip these hungreds of KBs and optimize the app!
 
 <small>¹ – tested with Moment.js 2.18.1</small>
 
