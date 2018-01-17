@@ -1,0 +1,23 @@
+{
+    "name": "moment-locales-webpack-plugin",
+    "version": "1.0.0",
+    "description": "Strip unused locales from Moment.js",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "author": "Ivan Akulov <mail@iamakulov.com> (iamakulov.com)",
+    "license": "MIT",
+    "peerDependencies": {
+        "moment": "^2.8.0",
+        "webpack": "^1 || ^2 || ^3"
+    },
+    "devDependencies": {
+        "jest": "^22.1.1",
+        "moment": "^2.20.1",
+        "webpack": "^3.10.0"
+    },
+    "dependencies": {
+        "lodash.difference": "^4.5.0"
+    }
+}
