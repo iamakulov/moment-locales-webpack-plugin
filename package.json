@@ -4,7 +4,8 @@
     "description": "Strip unused locales from Moment.js",
     "main": "index.js",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "test-syntax": "node ./index.js"
     },
     "repository": "iamakulov/moment-locales-webpack-plugin",
     "author": "Ivan Akulov <mail@iamakulov.com> (iamakulov.com)",
