@@ -7,7 +7,7 @@ test('returns a ContextReplacementPlugin instance when locales are passed', () =
 
     expect(result.constructor.name).toEqual('ContextReplacementPlugin');
     expect(result.newContentRegExp.toString()).toEqual(
-        '/(en-gb\\.js|ru\\.js)$/',
+        '/(en-gb\\.js|ru\\.js)$/'
     );
 });
 
@@ -36,19 +36,19 @@ test('normalizes locales to match file names', () => {
 describe('validation', () => {
     test('throws when an unknown option is passed', () => {
         expect(() => new MomentLocalesPlugin({ foo: 'bar' })).toThrow(
-            /unknown option/,
+            /unknown option/
         );
     });
 
     test('throws when not an array is passed into `localesToKeep`', () => {
         expect(() => new MomentLocalesPlugin({ localesToKeep: {} })).toThrow(
-            /Expected .+ option to be an array, received/,
+            /Expected .+ option to be an array, received/
         );
     });
 
     test('throws when an invalid locale is passed into `localesToKeep`', () => {
         expect(
-            () => new MomentLocalesPlugin({ localesToKeep: ['foo-bar'] }),
+            () => new MomentLocalesPlugin({ localesToKeep: ['foo-bar'] })
         ).toThrow(/Moment.js doesn’t include/);
     });
 });
