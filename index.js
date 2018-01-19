@@ -18,18 +18,18 @@ function checkOptions(options) {
     var supportedOptions = ['localesToKeep'];
     var unknownOptions = arrayDifference(
         Object.keys(optionsObject),
-        supportedOptions,
+        supportedOptions
     );
     if (unknownOptions.length > 0) {
         throw new Error(
             'MomentLocalesPlugin: received unknown options: ' +
                 unknownOptions.join(', ') +
-                '. Only `localesToKeep` option is supported at the moment',
+                '. Only `localesToKeep` option is supported at the moment'
         );
     }
 
     var localesToKeep = normalizeLocalesToKeep(
-        optionsObject.localesToKeep || [],
+        optionsObject.localesToKeep || []
     );
 
     return {
@@ -44,7 +44,7 @@ function normalizeLocalesToKeep(localesToKeep) {
             'MomentLocalesPlugin: Expected the `localesToKeep` option to be an array, received ' +
                 (JSON.stringify(localesToKeep) || localesToKeep) +
                 '. Pass an array, like this:\nmodule.exports = {\n  plugins: [\n    new MomentLocalesPlugin({\n' +
-                "      localesToKeep: ['en-us', 'ru']\n    })\n  ]\n}",
+                "      localesToKeep: ['en-us', 'ru']\n    })\n  ]\n}"
         );
     }
 
@@ -60,7 +60,7 @@ function normalizeLocalesToKeep(localesToKeep) {
                     : 'a few locales you specified: ') +
                 absentLocales.join(', ') +
                 '. Check the plugin’s `localesToKeep` option.\nYou can see the full list of locales ' +
-                'that Moment.js includes in node_modules/moment/locale/',
+                'that Moment.js includes in node_modules/moment/locale/'
         );
     }
 
@@ -84,7 +84,7 @@ function MomentLocalesPlugin(options) {
 
         return new ContextReplacementPlugin(
             /moment[\/\\]locale/,
-            new RegExp('(' + regExpPatterns.join('|') + ')$'),
+            new RegExp('(' + regExpPatterns.join('|') + ')$')
         );
     } else {
         return new IgnorePlugin(/^\.\/locale$/, /moment$/);
