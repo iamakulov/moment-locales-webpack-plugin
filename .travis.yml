@@ -1,8 +1,8 @@
 language: node_js
-node_js:
-  - "stable"
 jobs:
   include:
+    - script: npm test
+      node_js: "stable"
       # Check that the code is properly parsed in Node.js v4
     - script: npm run test-syntax
       node_js: "4"
