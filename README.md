@@ -22,7 +22,7 @@ npm install --save-dev moment-locales-webpack-plugin
 
 ```js
 // webpack.config.js
-const MomentLocalesPlugins = require('moment-locales-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 module.exports = {
     plugins: [
