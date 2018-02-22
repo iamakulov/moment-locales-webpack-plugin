@@ -79,7 +79,7 @@ function MomentLocalesPlugin(options) {
 
     if (localesToKeep.length > 0) {
         var regExpPatterns = localesToKeep.map(function(localeName) {
-            return localeName + '\\.js';
+            return localeName + '(\\.js)?';
         });
 
         return new ContextReplacementPlugin(

@@ -7,7 +7,7 @@ test('returns a ContextReplacementPlugin instance when locales are passed', () =
 
     expect(result.constructor.name).toEqual('ContextReplacementPlugin');
     expect(result.newContentRegExp.toString()).toEqual(
-        '/(en-gb\\.js|ru\\.js)$/'
+        '/(en-gb(\\.js)?|ru(\\.js)?)$/'
     );
 });
 
@@ -30,7 +30,7 @@ test('normalizes locales to match file names', () => {
         localesToKeep: ['en-gb-foo'],
     });
 
-    expect(result.newContentRegExp.toString()).toMatch(/en-gb\\.js/);
+    expect(result.newContentRegExp.toString()).toMatch(/en-gb(\\.js)?/);
 });
 
 describe('validation', () => {
