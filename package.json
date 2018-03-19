@@ -12,7 +12,7 @@
     "license": "MIT",
     "peerDependencies": {
         "moment": "^2.8.0",
-        "webpack": "^1 || ^2 || ^3"
+        "webpack": "^1 || ^2 || ^3 || ^4"
     },
     "devDependencies": {
         "jest": "^22.1.1",
