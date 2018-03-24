@@ -1,5 +1,7 @@
 # moment-locales-webpack-plugin
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/iamakulov/moment-locales-webpack-plugin.svg)](https://greenkeeper.io/)
+
 [![npm](https://img.shields.io/npm/v/moment-locales-webpack-plugin.svg)](https://www.npmjs.com/package/moment-locales-webpack-plugin) [![Travis](https://img.shields.io/travis/iamakulov/moment-locales-webpack-plugin.svg)](https://travis-ci.org/iamakulov/moment-locales-webpack-plugin)
 
 > Easily remove unused Moment.js locales when building with webpack
