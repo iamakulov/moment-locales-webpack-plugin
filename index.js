@@ -50,7 +50,13 @@ function normalizeLocalesToKeep(localesToKeep) {
 
     // Check if has unknown locales
     var absentLocales = localesToKeep.filter(function(localeName) {
-        return moment.localeData(localeName) === null;
+        const localeData = moment.localeData(localeName);
+        return (
+            // For Moment 2.20.1−
+            localeData === null ||
+            // For Moment. 2.21.0+ – this version now returns a default locale instead of null
+            localeData === moment.localeData()
+        );
     });
     if (absentLocales.length > 0) {
         throw new Error(
