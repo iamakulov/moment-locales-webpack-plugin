@@ -6,7 +6,7 @@
 
 const proxyquire = require('proxyquire');
 
-const Plugin = proxyquire('../index.js', {
+const Plugin = proxyquire.noCallThru().load('../index.js', {
     webpack: {
         IgnorePlugin: function() {},
         ContextReplacementPlugin: function() {},
