@@ -51,6 +51,22 @@ describe('webpack build', () => {
         expect(localeModules).toHaveLength(0);
     });
 
+    test('accepts the default locale (en)', async () => {
+        const modulePaths = await runWithWebpack({
+            localesToKeep: ['en'],
+        });
+
+        const momentModule = modulePaths.find(path =>
+            path.includes('moment/moment.js')
+        );
+        expect(momentModule).toBeTruthy();
+
+        const localeModules = modulePaths.filter(path =>
+            path.includes(`moment/locale`)
+        );
+        expect(localeModules).toHaveLength(0);
+    });
+
     test('normalizes locales to match the file names', async () => {
         const modulePaths = await runWithWebpack({
             localesToKeep: ['en-gb-foo'],

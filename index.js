@@ -48,13 +48,18 @@ function normalizeLocalesToKeep(localesToKeep) {
         );
     }
 
-    // Check if has unknown locales
+    // 'en' is built into Moment, so it doesn't exist in the locales context
+    localesToKeep = localesToKeep.filter(function(localeName) {
+        return localeName !== 'en';
+    });
+
+    // Check if it has unknown locales
     var absentLocales = localesToKeep.filter(function(localeName) {
-        const localeData = moment.localeData(localeName);
+        var localeData = moment.localeData(localeName);
         return (
             // For Moment 2.20.1−
             localeData === null ||
-            // For Moment. 2.21.0+ – this version now returns a default locale instead of null
+            // For Moment. 2.21.0+ – this version now returns the localeData of the currently set locale, instead of null
             localeData === moment.localeData()
         );
     });
