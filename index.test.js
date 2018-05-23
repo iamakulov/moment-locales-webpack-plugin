@@ -25,6 +25,14 @@ test('works when no options are passed', () => {
     expect(result.constructor.name).toEqual('IgnorePlugin');
 });
 
+test('works with the default locale (en)', () => {
+    const result = new MomentLocalesPlugin({
+        localesToKeep: ['en'],
+    });
+
+    expect(result.constructor.name).toEqual('IgnorePlugin');
+});
+
 test('normalizes locales to match file names', () => {
     const result = new MomentLocalesPlugin({
         localesToKeep: ['en-gb-foo'],
