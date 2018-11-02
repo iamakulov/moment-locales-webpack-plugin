@@ -19,7 +19,7 @@
         "moment": "^2.21.0",
         "proxyquire": "^2.0.1",
         "temp-dir": "^1.0.0",
-        "webpack": "^4.18.1"
+        "webpack": "^4.24.0"
     },
     "dependencies": {
         "lodash.difference": "^4.5.0"
