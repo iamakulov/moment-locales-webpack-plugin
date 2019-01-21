@@ -48,7 +48,7 @@ Locale names follow Moment.js behavior – if a specific locale name (e.g. `ru-r
 
 ## Related projects
 
-* [`moment-timezone-data-webpack-plugin`](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) – a plugin optimizing Moment Timezone library.
+* [`moment-timezone-data-webpack-plugin`](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) – a plugin optimizing the Moment Timezone library.
 
 ## License
 
