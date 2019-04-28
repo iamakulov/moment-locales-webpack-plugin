@@ -18,7 +18,7 @@
         "jest": "^22.1.1",
         "moment": "^2.21.0",
         "proxyquire": "^2.0.1",
-        "temp-dir": "^1.0.0",
+        "temp-dir": "^2.0.0",
         "webpack": "^4.28.0"
     },
     "dependencies": {
