@@ -103,4 +103,10 @@ describe('validation', () => {
             () => new MomentLocalesPlugin({ localesToKeep: ['foo-bar'] })
         ).toThrow(/Moment.js doesn’t include/);
     });
+
+    test('does not throw when an invalid locale is passed and `ignoreInvalidLocales` is enabled', () => {
+        expect(
+            () => new MomentLocalesPlugin({ localesToKeep: ['foo-bar'], ignoreInvalidLocales: true })
+        ).not.toThrow();
+    });
 });
