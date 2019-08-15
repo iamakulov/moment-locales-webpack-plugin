@@ -15,7 +15,7 @@
         "webpack": "^1 || ^2 || ^3 || ^4"
     },
     "devDependencies": {
-        "jest": "^22.1.1",
+        "jest": "^24.8.0",
         "moment": "^2.21.0",
         "proxyquire": "^2.0.1",
         "temp-dir": "^1.0.0",
