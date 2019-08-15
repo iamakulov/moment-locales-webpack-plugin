@@ -46,6 +46,12 @@ An array of locales to keep bundled (other locales would be removed).
 
 Locale names follow Moment.js behavior – if a specific locale name (e.g. `ru-ru`) is absent, but a more generic locale (`ru`) is available, the generic one will be kept bundled.
 
+### **`ignoreInvalidLocales: Boolean`**
+
+A flag to ignore invalid or unsupported locales in the `localesToKeep` array.
+
+Be careful! A typo in the `localesToKeep` array with this flag enabled will silently exclude the desired locale from your bundle.
+
 ## Related projects
 
 * [`moment-timezone-data-webpack-plugin`](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) – a plugin optimizing the Moment Timezone library.

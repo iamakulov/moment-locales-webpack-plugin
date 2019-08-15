@@ -15,7 +15,7 @@ function isModuleAvailable(moduleName) {
 function checkOptions(options) {
     var optionsObject = options || {};
 
-    var supportedOptions = ['localesToKeep'];
+    var supportedOptions = ['localesToKeep', 'ignoreInvalidLocales'];
     var unknownOptions = arrayDifference(
         Object.keys(optionsObject),
         supportedOptions
@@ -24,20 +24,20 @@ function checkOptions(options) {
         throw new Error(
             'MomentLocalesPlugin: received unknown options: ' +
                 unknownOptions.join(', ') +
-                '. Only `localesToKeep` option is supported at the moment'
+                '. Only `localesToKeep` and `ignoreInvalidLocales` options are supported at the moment'
         );
     }
 
-    var localesToKeep = normalizeLocalesToKeep(
-        optionsObject.localesToKeep || []
-    );
+    var localesToKeep = normalizeLocalesToKeep(optionsObject);
 
     return {
         localesToKeep: localesToKeep,
     };
 }
 
-function normalizeLocalesToKeep(localesToKeep) {
+function normalizeLocalesToKeep(optionsObject) {
+    var localesToKeep = optionsObject.localesToKeep || [];
+
     // Check if an array
     if (!Array.isArray(localesToKeep)) {
         throw new Error(
@@ -48,22 +48,29 @@ function normalizeLocalesToKeep(localesToKeep) {
         );
     }
 
-    // 'en' is built into Moment, so it doesn't exist in the locales context
+    // Check if it has unknown locales and filter them out
+    var absentLocales = [];
     localesToKeep = localesToKeep.filter(function(localeName) {
-        return localeName !== 'en';
-    });
+        // 'en' is built into Moment, so it doesn't exist in the locales context
+        if (localeName === 'en') {
+            return false;
+        }
 
-    // Check if it has unknown locales
-    var absentLocales = localesToKeep.filter(function(localeName) {
         var localeData = moment.localeData(localeName);
-        return (
+        if (
             // For Moment 2.20.1−
             localeData === null ||
             // For Moment. 2.21.0+ – this version now returns the localeData of the currently set locale, instead of null
             localeData === moment.localeData()
-        );
+        ) {
+            absentLocales.push(localeName);
+            return false;
+        }
+
+        return true;
     });
-    if (absentLocales.length > 0) {
+
+    if (!optionsObject.ignoreInvalidLocales && absentLocales.length > 0) {
         throw new Error(
             'MomentLocalesPlugin: Moment.js doesn’t include ' +
                 (absentLocales.length === 1
@@ -71,7 +78,8 @@ function normalizeLocalesToKeep(localesToKeep) {
                     : 'a few locales you specified: ') +
                 absentLocales.join(', ') +
                 '. Check the plugin’s `localesToKeep` option.\nYou can see the full list of locales ' +
-                'that Moment.js includes in node_modules/moment/locale/'
+                'that Moment.js includes in node_modules/moment/locale/ .\n' +
+                'If you would like unsupported locales to be ignored, please use the `ignoreInvalidLocales` option.'
         );
     }
 
