@@ -39,47 +39,65 @@ function normalizeLocalesToKeep(optionsObject) {
         );
     }
 
-    // Check if it has unknown locales and filter them out
-    var absentLocales = [];
-    localesToKeep = localesToKeep.filter(function(localeName) {
-        // 'en' is built into Moment, so it doesn't exist in the locales context
-        if (localeName === 'en') {
-            return false;
-        }
-
-        var localeData = moment.localeData(localeName);
-        if (
-            // For Moment 2.20.1−
-            localeData === null ||
-            // For Moment. 2.21.0+ – this version now returns the localeData of the currently set locale, instead of null
-            localeData === moment.localeData()
-        ) {
-            absentLocales.push(localeName);
-            return false;
-        }
-
-        return true;
-    });
-
-    if (!optionsObject.ignoreInvalidLocales && absentLocales.length > 0) {
+    // Check if it has unsupported locales
+    var unsupportedLocales = getUnsupportedLocales(localesToKeep);
+    if (!optionsObject.ignoreInvalidLocales && unsupportedLocales.length > 0) {
         throw new Error(
             'MomentLocalesPlugin: Moment.js doesn’t include ' +
-                (absentLocales.length === 1
+                (unsupportedLocales.length === 1
                     ? 'a locale you specified: '
                     : 'a few locales you specified: ') +
-                absentLocales.join(', ') +
+                unsupportedLocales.join(', ') +
                 '. Check the plugin’s `localesToKeep` option.\nYou can see the full list of locales ' +
-                'that Moment.js includes in node_modules/moment/locale/ .\n' +
+                'that Moment.js includes in node_modules/moment/locale/.\n' +
                 'If you would like unsupported locales to be ignored, please use the `ignoreInvalidLocales` option.'
         );
     }
 
+    // Filter out supported locales to keep
+    var normalizedLocales = localesToKeep.filter(function(localeName) {
+        return (
+            unsupportedLocales.indexOf(localeName) === -1 &&
+            // 'en' is built into Moment, so it doesn't exist in the locales context
+            localeName !== 'en'
+        );
+    });
+
     // Normalize the locales to match the file names
     // (i.e. `en-gb-foo` would be recognized by Moment as `en-gb`,
     // but no `en-gb-foo.js` file exists)
-    return localesToKeep.map(function(localeName) {
+    return normalizedLocales.map(function(localeName) {
         return moment.localeData(localeName)._abbr;
     });
+}
+
+function getUnsupportedLocales(locales) {
+    // In some use cases, customers already have a moment locale set globally
+    // (e.g., this is a case in https://github.com/nuxt-community/moment-module/issues/25).
+    // We need to save the customer locale and restore it later
+    var customerActiveLocaleName = moment.locale();
+
+    var defaultGlobalLocaleName = 'en';
+    moment.locale(defaultGlobalLocaleName);
+
+    var unsupportedLocales = locales.filter(function(customerLocaleName) {
+        var momentLocaleData = moment.localeData(customerLocaleName);
+        var momentLocaleName = momentLocaleData && momentLocaleData._abbr;
+
+        return (
+            // For Moment 2.20.1−: `moment.localeData()` returns `null` if the passed locale is unsupported
+            momentLocaleName === null ||
+            // For Moment 2.21.0+: `moment.localeData()` returns the currently active locale
+            // if the passed locale is unsupported
+            (momentLocaleName === defaultGlobalLocaleName &&
+                // Just in case the customer passes `en` in `localesToKeep`
+                customerLocaleName !== defaultGlobalLocaleName)
+        );
+    });
+
+    moment.locale(customerActiveLocaleName);
+
+    return unsupportedLocales;
 }
 
 function MomentLocalesPlugin(options) {
