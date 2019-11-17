@@ -1,6 +1,6 @@
 {
     "name": "moment-locales-webpack-plugin",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Strip unused locales from Moment.js",
     "main": "index.js",
     "scripts": {
