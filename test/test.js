@@ -1,4 +1,3 @@
-const path = require('path');
 const { runWithWebpack } = require('./utils.js');
 const MomentLocalesPlugin = require('../index.js');
 

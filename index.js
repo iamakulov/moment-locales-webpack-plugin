@@ -3,15 +3,6 @@ var moment = require('moment');
 var IgnorePlugin = require('webpack').IgnorePlugin;
 var ContextReplacementPlugin = require('webpack').ContextReplacementPlugin;
 
-function isModuleAvailable(moduleName) {
-    try {
-        require.resolve(moduleName);
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-
 function checkOptions(options) {
     var optionsObject = options || {};
 
