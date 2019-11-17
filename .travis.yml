@@ -1,17 +1,14 @@
 language: node_js
 jobs:
-  include:
-      # ↓ The Greenkeeper job
-    - before_install:
-      # package-lock.json was introduced in npm@5
-      - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
-      - npm install -g greenkeeper-lockfile@1
-      script:
-      - greenkeeper-lockfile-update
-      - greenkeeper-lockfile-upload
-      node_js: "stable"
-    - script: npm test
-      node_js: "stable"
-      # Check that the code is properly parsed in Node.js v4
-    - script: npm run test-syntax
-      node_js: "4"
+    include:
+        # ↓ The Greenkeeper job
+        - before_install:
+              # package-lock.json was introduced in npm@5
+              - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
+              - npm install -g greenkeeper-lockfile@1
+          script:
+              - greenkeeper-lockfile-update
+              - greenkeeper-lockfile-upload
+          node_js: 'stable'
+        - script: npm test
+          node_js: 'stable'
