@@ -1,4 +1,3 @@
-const path = require('path');
 const { runWithWebpack } = require('./utils.js');
 const MomentLocalesPlugin = require('../index.js');
 
@@ -130,5 +129,19 @@ describe('validation', () => {
                     ignoreInvalidLocales: true,
                 })
         ).not.toThrow();
+    });
+
+    // This handles https://github.com/iamakulov/moment-locales-webpack-plugin/issues/23
+    test('does not throw when someone changes the global locale before the build', async () => {
+        const moment = require('moment');
+        moment.locale('de-ch');
+
+        expect(() => {
+            new MomentLocalesPlugin({
+                localesToKeep: ['de-ch'],
+            });
+        }).not.toThrow();
+
+        expect(moment.locale()).toBe('de-ch');
     });
 });
