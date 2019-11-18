@@ -82,6 +82,24 @@ describe('webpack build', () => {
         expect(localeModules).toHaveLength(1);
         expect(localeModules[0]).toMatch('moment/locale/en-gb');
     });
+
+    // Covers https://github.com/iamakulov/moment-locales-webpack-plugin/issues/13
+    test('doesn’t include locales whose names intersect with a passed locale', async () => {
+        const modulePaths = await runWithWebpack({
+            localesToKeep: ['ca'],
+        });
+
+        const momentModule = modulePaths.find(path =>
+            path.includes('moment/moment.js')
+        );
+        expect(momentModule).toBeTruthy();
+
+        const localeModules = modulePaths.filter(path =>
+            path.includes(`moment/locale`)
+        );
+        expect(localeModules).toHaveLength(1);
+        expect(localeModules[0]).toMatch('moment/locale/ca');
+    });
 });
 
 describe('validation', () => {

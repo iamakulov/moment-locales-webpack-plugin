@@ -112,7 +112,7 @@ function MomentLocalesPlugin(options) {
 
         return new ContextReplacementPlugin(
             /moment[\/\\]locale/,
-            new RegExp('(' + regExpPatterns.join('|') + ')$')
+            new RegExp('[/\\\\](' + regExpPatterns.join('|') + ')$')
         );
     } else {
         return new IgnorePlugin(/^\.\/locale$/, /moment$/);
