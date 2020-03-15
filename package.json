@@ -4,21 +4,24 @@
     "description": "Strip unused locales from Moment.js",
     "main": "index.js",
     "scripts": {
-        "test": "jest"
+        "test-webpack-5": "WEBPACK_PACKAGE=webpack jest",
+        "test-webpack-4": "WEBPACK_PACKAGE=webpack-v4 jest",
+        "test": "yarn test-webpack-5 && yarn test-webpack-4"
     },
     "repository": "iamakulov/moment-locales-webpack-plugin",
     "author": "Ivan Akulov <mail@iamakulov.com> (iamakulov.com)",
     "license": "MIT",
     "peerDependencies": {
         "moment": "^2.8.0",
-        "webpack": "^1 || ^2 || ^3 || ^4"
+        "webpack": "^1 || ^2 || ^3 || ^4 || ^5"
     },
     "devDependencies": {
         "jest": "^24.8.0",
         "moment": "^2.21.0",
         "proxyquire": "^2.0.1",
         "temp-dir": "^1.0.0",
-        "webpack": "^4.28.0"
+        "webpack": "^5.0.0-beta.14",
+        "webpack-v4": "npm:webpack@^4"
     },
     "dependencies": {
         "lodash.difference": "^4.5.0"
