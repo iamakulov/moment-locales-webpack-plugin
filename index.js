@@ -1,6 +1,5 @@
 var arrayDifference = require('lodash.difference');
 var moment = require('moment');
-var IgnorePlugin = require('webpack').IgnorePlugin;
 var ContextReplacementPlugin = require('webpack').ContextReplacementPlugin;
 
 function checkOptions(options) {
@@ -105,18 +104,16 @@ function MomentLocalesPlugin(options) {
 
     var localesToKeep = normalizedOptions.localesToKeep;
 
-    if (localesToKeep.length > 0) {
-        var regExpPatterns = localesToKeep.map(function(localeName) {
-            return localeName + '(\\.js)?';
-        });
+    var regExpPatterns = localesToKeep.map(function(localeName) {
+        return localeName + '(\\.js)?';
+    });
+    var regExpForLocales =
+        regExpPatterns.length > 0
+            ? new RegExp('[/\\\\](' + regExpPatterns.join('|') + ')$')
+            : // A regexp that doesn’t match anything – per https://stackoverflow.com/a/2930280/1192426
+              /\b\B/;
 
-        return new ContextReplacementPlugin(
-            /moment[\/\\]locale/,
-            new RegExp('[/\\\\](' + regExpPatterns.join('|') + ')$')
-        );
-    } else {
-        return new IgnorePlugin(/^\.\/locale$/, /moment$/);
-    }
+    return new ContextReplacementPlugin(/moment[\/\\]locale/, regExpForLocales);
 }
 
 module.exports = MomentLocalesPlugin;
