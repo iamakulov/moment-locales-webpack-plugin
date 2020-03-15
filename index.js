@@ -109,7 +109,8 @@ function MomentLocalesPlugin(options) {
     });
     var regExpForLocales =
         regExpPatterns.length > 0
-            ? new RegExp('[/\\\\](' + regExpPatterns.join('|') + ')$')
+            ? // A regexp that matches only locales we want to bundle
+              new RegExp('[/\\\\](' + regExpPatterns.join('|') + ')$')
             : // A regexp that doesn’t match anything – per https://stackoverflow.com/a/2930280/1192426
               /\b\B/;
 
