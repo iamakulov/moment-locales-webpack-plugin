@@ -54,7 +54,11 @@ Be careful! A typo in the `localesToKeep` array with this flag enabled will sile
 
 ## Related projects
 
-* [`moment-timezone-data-webpack-plugin`](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) – a plugin optimizing the Moment Timezone library.
+-   [`moment-timezone-data-webpack-plugin`](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) – a plugin optimizing the Moment Timezone library.
+
+## Contributing
+
+See [CONTRIBUTING.md](https://github.com/iamakulov/moment-locales-webpack-plugin/blob/master/CONTRIBUTING.md) for how to contribute.
 
 ## License
 
