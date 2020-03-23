@@ -21,7 +21,7 @@
         "cross-env": "^7.0.2",
         "jest": "^24.8.0",
         "moment": "^2.21.0",
-        "prettier": "^1.19.1",
+        "prettier": "^2.0.2",
         "proxyquire": "^2.0.1",
         "temp-dir": "^1.0.0",
         "webpack": "^5.0.0-beta.14",
