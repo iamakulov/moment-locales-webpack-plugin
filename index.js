@@ -54,7 +54,7 @@ function normalizeLocalesToKeep(optionsObject) {
     }
 
     // Filter out supported locales to keep
-    var normalizedLocales = localesToKeep.filter(function(localeName) {
+    var normalizedLocales = localesToKeep.filter(function (localeName) {
         return (
             unsupportedLocales.indexOf(localeName) === -1 &&
             // 'en' is built into Moment, so it doesn't exist in the locales context
@@ -65,7 +65,7 @@ function normalizeLocalesToKeep(optionsObject) {
     // Normalize the locales to match the file names
     // (i.e. `en-gb-foo` would be recognized by Moment as `en-gb`,
     // but no `en-gb-foo.js` file exists)
-    return normalizedLocales.map(function(localeName) {
+    return normalizedLocales.map(function (localeName) {
         return moment.localeData(localeName)._abbr;
     });
 }
@@ -79,7 +79,7 @@ function getUnsupportedLocales(locales) {
     var defaultGlobalLocaleName = 'en';
     moment.locale(defaultGlobalLocaleName);
 
-    var unsupportedLocales = locales.filter(function(customerLocaleName) {
+    var unsupportedLocales = locales.filter(function (customerLocaleName) {
         var momentLocaleData = moment.localeData(customerLocaleName);
         var momentLocaleName = momentLocaleData && momentLocaleData._abbr;
 
@@ -104,7 +104,7 @@ function MomentLocalesPlugin(options) {
 
     var localesToKeep = normalizedOptions.localesToKeep;
 
-    var regExpPatterns = localesToKeep.map(function(localeName) {
+    var regExpPatterns = localesToKeep.map(function (localeName) {
         return localeName + '(\\.js)?';
     });
     var regExpForLocales =

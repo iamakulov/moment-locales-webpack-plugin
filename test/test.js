@@ -7,12 +7,12 @@ describe('webpack build', () => {
             localesToKeep: ['en-gb', 'ru'],
         });
 
-        const momentModule = modulePaths.find(path =>
+        const momentModule = modulePaths.find((path) =>
             path.includes('moment/moment.js')
         );
         expect(momentModule).toBeTruthy();
 
-        const localeModules = modulePaths.filter(path =>
+        const localeModules = modulePaths.filter((path) =>
             path.includes(`moment/locale`)
         );
         expect(localeModules).toHaveLength(2);
@@ -25,12 +25,12 @@ describe('webpack build', () => {
             localesToKeep: [],
         });
 
-        const momentModule = modulePaths.find(path =>
+        const momentModule = modulePaths.find((path) =>
             path.includes('moment/moment.js')
         );
         expect(momentModule).toBeTruthy();
 
-        const localeModules = modulePaths.filter(path =>
+        const localeModules = modulePaths.filter((path) =>
             path.includes(`moment/locale`)
         );
         expect(localeModules).toHaveLength(0);
@@ -39,12 +39,12 @@ describe('webpack build', () => {
     test('works when no options are passed', async () => {
         const modulePaths = await runWithWebpack();
 
-        const momentModule = modulePaths.find(path =>
+        const momentModule = modulePaths.find((path) =>
             path.includes('moment/moment.js')
         );
         expect(momentModule).toBeTruthy();
 
-        const localeModules = modulePaths.filter(path =>
+        const localeModules = modulePaths.filter((path) =>
             path.includes(`moment/locale`)
         );
         expect(localeModules).toHaveLength(0);
@@ -55,12 +55,12 @@ describe('webpack build', () => {
             localesToKeep: ['en'],
         });
 
-        const momentModule = modulePaths.find(path =>
+        const momentModule = modulePaths.find((path) =>
             path.includes('moment/moment.js')
         );
         expect(momentModule).toBeTruthy();
 
-        const localeModules = modulePaths.filter(path =>
+        const localeModules = modulePaths.filter((path) =>
             path.includes(`moment/locale`)
         );
         expect(localeModules).toHaveLength(0);
@@ -71,12 +71,12 @@ describe('webpack build', () => {
             localesToKeep: ['en-gb-foo'],
         });
 
-        const momentModule = modulePaths.find(path =>
+        const momentModule = modulePaths.find((path) =>
             path.includes('moment/moment.js')
         );
         expect(momentModule).toBeTruthy();
 
-        const localeModules = modulePaths.filter(path =>
+        const localeModules = modulePaths.filter((path) =>
             path.includes(`moment/locale`)
         );
         expect(localeModules).toHaveLength(1);
@@ -89,12 +89,12 @@ describe('webpack build', () => {
             localesToKeep: ['ca'],
         });
 
-        const momentModule = modulePaths.find(path =>
+        const momentModule = modulePaths.find((path) =>
             path.includes('moment/moment.js')
         );
         expect(momentModule).toBeTruthy();
 
-        const localeModules = modulePaths.filter(path =>
+        const localeModules = modulePaths.filter((path) =>
             path.includes(`moment/locale`)
         );
         expect(localeModules).toHaveLength(1);
