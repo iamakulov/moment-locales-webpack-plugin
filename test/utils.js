@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const tempDir = require('temp-dir');
 const MomentLocalesPlugin = require('../index.js');
 
-const runWithWebpack = pluginOptions => {
+const runWithWebpack = (pluginOptions) => {
     return new Promise((resolve, reject) => {
         webpack(
             {
@@ -21,9 +21,9 @@ const runWithWebpack = pluginOptions => {
                 }
 
                 const modulePaths = stats.compilation.modules
-                    .map(i => i.resource)
+                    .map((i) => i.resource)
                     .filter(Boolean)
-                    .map(path => path.replace(/\\/g, '/'));
+                    .map((path) => path.replace(/\\/g, '/'));
 
                 resolve(modulePaths);
             }
