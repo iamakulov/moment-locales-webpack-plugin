@@ -1,4 +1,3 @@
-var arrayDifference = require('lodash.difference');
 var moment = require('moment');
 var ContextReplacementPlugin = require('webpack').ContextReplacementPlugin;
 
@@ -6,10 +5,9 @@ function checkOptions(options) {
     var optionsObject = options || {};
 
     var supportedOptions = ['localesToKeep', 'ignoreInvalidLocales'];
-    var unknownOptions = arrayDifference(
-        Object.keys(optionsObject),
-        supportedOptions
-    );
+    var unknownOptions = Object.keys(optionsObject).filter((optionName) => {
+        return supportedOptions.indexOf(optionName) === -1;
+    });
     if (unknownOptions.length > 0) {
         throw new Error(
             'MomentLocalesPlugin: received unknown options: ' +

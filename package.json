@@ -19,15 +19,12 @@
     },
     "devDependencies": {
         "cross-env": "^7.0.2",
-        "jest": "^24.8.0",
+        "jest": "^27.2.0",
         "moment": "^2.21.0",
         "prettier": "^2.3.2",
         "proxyquire": "^2.0.1",
-        "temp-dir": "^1.0.0",
-        "webpack": "^5.0.0-beta.14",
+        "temp-dir": "^2.0.0",
+        "webpack": "^5.0.0",
         "webpack-v4": "npm:webpack@^4"
-    },
-    "dependencies": {
-        "lodash.difference": "^4.5.0"
     }
 }
