@@ -26,8 +26,5 @@
         "temp-dir": "^2.0.0",
         "webpack": "^5.0.0",
         "webpack-v4": "npm:webpack@^4"
-    },
-    "dependencies": {
-        "lodash.difference": "^4.5.0"
     }
 }
